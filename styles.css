@@ -277,6 +277,14 @@ body {
 .legend-dot.Type3 {
   background: #fee08b;
 }
+.legend-dot.Type4 {
+  background: #74ADD1;
+}
+
+.legend-dot.Type5 {
+  background: #4575B4;
+}
+
 
 #hli2ScatterPlot1,
 #hli2ScatterPlot2 {

@@ -73,8 +73,6 @@ function setupEventListeners() {
 
 
 // ──HLI_1 Visualization ───────────────────────────────────────────
-//scatterplot with highlight
-//scatterplot
 // CREATED WITH EXAMPLE FROM CLASS - bias lab
 const margin = 100;
 const frameWidth = 1000;
@@ -83,180 +81,324 @@ const visWidth = (frameWidth - 3*margin) / 2;
 const visHeight = (frameHeight - 2*margin);
 
 let frame = d3.select("#scatterplot_env")
-                .append("svg")
-                    .attr("width", frameWidth)
-                    .attr("height", frameHeight);
+                .append("svg")
+                    .attr("width", frameWidth*4)
+                    .attr("height", frameHeight*4.5);
 
 let frame1 = frame.append('g')
-                    .attr("transform", "translate(" + margin + "," + margin + ")");
+  .attr("transform", `translate(${margin}, ${margin})`);
 let frame2 = frame.append('g')
-                    .attr("transform", "translate(" + (margin*2 + visWidth) + "," + margin + ")");
+  .attr("transform", `translate(${margin*2 + visWidth}, ${margin})`);
+let frame3 = frame.append('g')
+  .attr("transform", `translate(${margin}, ${margin*2 + visHeight})`);
+let frame4 = frame.append('g')
+  .attr("transform", `translate(${margin*2 + visWidth}, ${margin*2 + visHeight})`);
+let frame5 = frame.append('g')
+  .attr("transform", `translate(${margin}, ${margin*3 + visHeight*2})`);
+let frame6 = frame.append('g')
+  .attr("transform", `translate(${margin*2 + visWidth}, ${margin*3 + visHeight*2})`);
+let frame7 = frame.append('g')
+  .attr("transform", `translate(${margin}, ${margin*4 + visHeight*3})`);
+let frame8 = frame.append('g')
+  .attr("transform", `translate(${margin*2 + visWidth}, ${margin*4 + visHeight*3})`);
+let frame9 = frame.append('g')
+  .attr("transform", `translate(${margin}, ${margin*5 + visHeight*4})`);
+let frame10 = frame.append('g')
+  .attr("transform", `translate(${margin*2 + visWidth}, ${margin*5 + visHeight*4})`);
 
 // to plot
 let x1 = 'Water Temperature'
-let y1 = 'Dissolved O₂'
-
+let y1 = 'Log scale of Density of macroinvertebrates'
 let x2 = 'Water Temperature'
-let y2 = 'Dissolved O₂'
-
-//
-
-// plot function
-
-//how to carch errors when loading json -> https://blog.stackademic.com/loading-json-data-in-d3-js-6859e7a71a1d
+let y2 = 'Log scale of Density of macroinvertebrates'
+let x3 = 'Water Temperature'
+let y3 = 'Log scale of Density of macroinvertebrates'
+let x4 = 'Water Temperature'
+let y4 = 'Log scale of Density of macroinvertebrates'
+let x5 = 'Water Temperature'
+let y5 = 'Log scale of Density of macroinvertebrates'
+let x6 = 'Water Temperature'
+let y6 = 'Log scale of Density of macroinvertebrates'
+let x7 = 'Water Temperature'
+let y7 = 'Log scale of Density of macroinvertebrates'
+let x8 = 'Water Temperature'
+let y8 = 'Log scale of Density of macroinvertebrates'
+let x9 = 'Water Temperature'
+let y9 = 'Log scale of Density of macroinvertebrates'
+let x10 = 'Water Temperature'
+let y10 = 'Log scale of Density of macroinvertebrates'
 
 d3.json("merged_data.json")
-        .then(function(data) {
+  .then(function(data) {
 
+    data = data.filter(d => d.density > 0);
 
+    // set up axes
+    let xScale1 = d3.scaleLinear().domain(d3.extent(data, d => d.waterTemp)).nice().range([0, visWidth]);
+    let xScale2 = d3.scaleLinear().domain(d3.extent(data, d => d.waterTemp)).nice().range([0, visWidth]);
+    let yScale1 = d3.scaleLog().domain(d3.extent(data, d => d.density)).nice().range([visHeight, 0]);
+    let yScale2 = d3.scaleLog().domain(d3.extent(data, d => d.density)).nice().range([visHeight, 0]);
 
-  // set up axes
-    let xScale1 = d3.scaleLinear()
-                    .domain(d3.extent(data, d => d.waterTemp)).nice()
-                    .range([0, visWidth]);
-    let xScale2 = d3.scaleLinear()
-                    .domain(d3.extent(data, d => d.waterTemp)).nice()
-                    .range([0, visWidth]);
-    let yScale1 = d3.scaleLinear()
-                    .domain(d3.extent(data, d => d.DO)).nice()
-                    .range([visHeight, 0]);
-    let yScale2 = d3.scaleLinear()
-                    .domain(d3.extent(data, d => d.DO)).nice()
-                    .range([visHeight, 0]);
+    let xScale3 = d3.scaleLinear().domain(d3.extent(data, d => d.waterTemp)).nice().range([0, visWidth]);
+    let xScale4 = d3.scaleLinear().domain(d3.extent(data, d => d.waterTemp)).nice().range([0, visWidth]);
+    let yScale3 = d3.scaleLog().domain(d3.extent(data, d => d.density)).nice().range([visHeight, 0]);
+    let yScale4 = d3.scaleLog().domain(d3.extent(data, d => d.density)).nice().range([visHeight, 0]);
 
-    let xAxis1 = d3.axisBottom(xScale1);
-    let xAxis2 = d3.axisBottom(xScale2);
-    let yAxis1 = d3.axisLeft(yScale1);
-    let yAxis2 = d3.axisLeft(yScale2);
+    let xScale5 = d3.scaleLinear().domain(d3.extent(data, d => d.waterTemp)).nice().range([0, visWidth]);
+    let xScale6 = d3.scaleLinear().domain(d3.extent(data, d => d.waterTemp)).nice().range([0, visWidth]);
+    let yScale5 = d3.scaleLog().domain(d3.extent(data, d => d.density)).nice().range([visHeight, 0]);
+    let yScale6 = d3.scaleLog().domain(d3.extent(data, d => d.density)).nice().range([visHeight, 0]);
 
+    let xScale7 = d3.scaleLinear().domain(d3.extent(data, d => d.waterTemp)).nice().range([0, visWidth]);
+    let xScale8 = d3.scaleLinear().domain(d3.extent(data, d => d.waterTemp)).nice().range([0, visWidth]);
+    let yScale7 = d3.scaleLog().domain(d3.extent(data, d => d.density)).nice().range([visHeight, 0]);
+    let yScale8 = d3.scaleLog().domain(d3.extent(data, d => d.density)).nice().range([visHeight, 0]);
 
+    let xScale9 = d3.scaleLinear().domain(d3.extent(data, d => d.waterTemp)).nice().range([0, visWidth]);
+    let xScale10 = d3.scaleLinear().domain(d3.extent(data, d => d.waterTemp)).nice().range([0, visWidth]);
+    let yScale9 = d3.scaleLog().domain(d3.extent(data, d => d.density)).nice().range([visHeight, 0]);
+    let yScale10 = d3.scaleLog().domain(d3.extent(data, d => d.density)).nice().range([visHeight, 0]);
 
+    let xAxis1 = d3.axisBottom(xScale1);
+    let xAxis2 = d3.axisBottom(xScale2);
+    let yAxis1 = d3.axisLeft(yScale1);
+    let yAxis2 = d3.axisLeft(yScale2);
 
+    let xAxis3 = d3.axisBottom(xScale3);
+    let xAxis4 = d3.axisBottom(xScale4);
+    let yAxis3 = d3.axisLeft(yScale3);
+    let yAxis4 = d3.axisLeft(yScale4);
 
-   // Add axes
-    // scatter 1
-    frame1.append('g')
-            .attr('transform', 'translate(0,' + (visHeight) + ')')
-            .call(xAxis1)
-    frame1.append("text")
-            .attr('transform', 'translate(' + (visWidth/2) + ',' + (visHeight + margin/2) + ')')
-            .style("text-anchor", "middle")
-            .text(x1);
+    let xAxis5 = d3.axisBottom(xScale5);
+    let xAxis6 = d3.axisBottom(xScale6);
+    let yAxis5 = d3.axisLeft(yScale5);
+    let yAxis6 = d3.axisLeft(yScale6);
 
-    frame1.append('g')
-            .call(yAxis1);
-    frame1.append("text")
-            .attr("transform", "rotate(-90)")
-            .attr('x', -visHeight/2)
-            .attr('y', -margin/2)
-            .style("text-anchor", "middle")
-            .text(y1);
+    let xAxis7 = d3.axisBottom(xScale7);
+    let xAxis8 = d3.axisBottom(xScale8);
+    let yAxis7 = d3.axisLeft(yScale7);
+    let yAxis8 = d3.axisLeft(yScale8);
 
-  // scatter 2
-    frame2.append('g')
-            .attr('transform', 'translate(0,' + (visHeight) + ')')
-            .call(xAxis2);
-    frame2.append("text")
-            .attr('transform', 'translate(' + (visWidth/2) + ',' + (visHeight + margin/2) + ')')
-            .style("text-anchor", "middle")
-            .text(x2);
+    let xAxis9 = d3.axisBottom(xScale9);
+    let xAxis10 = d3.axisBottom(xScale10);
+    let yAxis9 = d3.axisLeft(yScale9);
+    let yAxis10 = d3.axisLeft(yScale10);
 
-    frame2.append('g')
-            .call(yAxis2);
-    frame2.append("text")
-            .attr("transform", "rotate(-90)")
-            .attr('x', -visHeight/2)
-            .attr('y', -margin/2)
-            .style("text-anchor", "middle")
-            .text(y2);
+    // Add axes - frame1 (2019 Summer)
+    frame1.append('g').attr('transform', 'translate(0,' + visHeight + ')').call(xAxis1);
+    frame1.append("text").attr('transform', 'translate(' + (visWidth/2) + ',' + (visHeight + margin/2) + ')').style("text-anchor", "middle").text(x1);
+    frame1.append('g').call(yAxis1);
+    frame1.append("text").attr("transform", "rotate(-90)").attr('x', -visHeight/2).attr('y', -margin/2).style("text-anchor", "middle").text(y1);
+    frame1.append("text").attr("x", visWidth/2).attr("y", 15).attr("text-anchor", "middle").style("font-size", "16px").text("Summer");
+    frame1.append("text").attr("x", -30).attr("y", visHeight/2).attr("text-anchor", "middle").attr("transform", `rotate(-90, -30, ${visHeight/2})`).style("font-size", "18px").style("font-weight", "bold").text("2019");
 
+    // frame2 (2019 Fall)
+    frame2.append('g').attr('transform', 'translate(0,' + visHeight + ')').call(xAxis2);
+    frame2.append("text").attr('transform', 'translate(' + (visWidth/2) + ',' + (visHeight + margin/2) + ')').style("text-anchor", "middle").text(x2);
+    frame2.append('g').call(yAxis2);
+    frame2.append("text").attr("transform", "rotate(-90)").attr('x', -visHeight/2).attr('y', -margin/2).style("text-anchor", "middle").text(y2);
+    frame2.append("text").attr("x", visWidth/2).attr("y", 15).attr("text-anchor", "middle").style("font-size", "16px").text("Fall");
 
+    
+    // frame3 (2020 Summer)
+    frame3.append('g').attr('transform', 'translate(0,' + visHeight + ')').call(xAxis3);
+    frame3.append("text").attr('transform', 'translate(' + (visWidth/2) + ',' + (visHeight + margin/2) + ')').style("text-anchor", "middle").text(x3);
+    frame3.append('g').call(yAxis3);
+    frame3.append("text").attr("transform", "rotate(-90)").attr('x', -visHeight/2).attr('y', -margin/2).style("text-anchor", "middle").text(y3);
+    frame3.append("text").attr("x", -30).attr("y", visHeight/2).attr("text-anchor", "middle").attr("transform", `rotate(-90, -30, ${visHeight/2})`).style("font-size", "18px").style("font-weight", "bold").text("2020");
 
-   // set up color scale for feeding groups
-    let feeding_colors = d3.scaleOrdinal()
-                            .domain(data.map(d => d['feedingGroup']))
-                            .range(['yellow','brown','blue','purple', 'orange','green']);
+    // frame4 (2020 Fall)
+    frame4.append('g').attr('transform', 'translate(0,' + visHeight + ')').call(xAxis4);
+    frame4.append("text").attr('transform', 'translate(' + (visWidth/2) + ',' + (visHeight + margin/2) + ')').style("text-anchor", "middle").text(x4);
+    frame4.append('g').call(yAxis4);
+    frame4.append("text").attr("transform", "rotate(-90)").attr('x', -visHeight/2).attr('y', -margin/2).style("text-anchor", "middle").text(y4);
 
+    // frame5 (2021 Summer)
+    frame5.append('g').attr('transform', 'translate(0,' + visHeight + ')').call(xAxis5);
+    frame5.append("text").attr('transform', 'translate(' + (visWidth/2) + ',' + (visHeight + margin/2) + ')').style("text-anchor", "middle").text(x5);
+    frame5.append('g').call(yAxis5);
+    frame5.append("text").attr("transform", "rotate(-90)").attr('x', -visHeight/2).attr('y', -margin/2).style("text-anchor", "middle").text(y5);
+    frame5.append("text").attr("x", -30).attr("y", visHeight/2).attr("text-anchor", "middle").attr("transform", `rotate(-90, -30, ${visHeight/2})`).style("font-size", "18px").style("font-weight", "bold").text("2021");
 
+    // frame6 (2021 Fall)
+    frame6.append('g').attr('transform', 'translate(0,' + visHeight + ')').call(xAxis6);
+    frame6.append("text").attr('transform', 'translate(' + (visWidth/2) + ',' + (visHeight + margin/2) + ')').style("text-anchor", "middle").text(x6);
+    frame6.append('g').call(yAxis6);
+    frame6.append("text").attr("transform", "rotate(-90)").attr('x', -visHeight/2).attr('y', -margin/2).style("text-anchor", "middle").text(y6);
+    
+    // frame7 (2022 Summer)
+    frame7.append('g').attr('transform', 'translate(0,' + visHeight + ')').call(xAxis7);
+    frame7.append("text").attr('transform', 'translate(' + (visWidth/2) + ',' + (visHeight + margin/2) + ')').style("text-anchor", "middle").text(x7);
+    frame7.append('g').call(yAxis7);
+    frame7.append("text").attr("transform", "rotate(-90)").attr('x', -visHeight/2).attr('y', -margin/2).style("text-anchor", "middle").text(y7);
+    frame7.append("text").attr("x", -30).attr("y", visHeight/2).attr("text-anchor", "middle").attr("transform", `rotate(-90, -30, ${visHeight/2})`).style("font-size", "18px").style("font-weight", "bold").text("2022");
 
+    // frame8 (2022 Fall)
+    frame8.append('g').attr('transform', 'translate(0,' + visHeight + ')').call(xAxis8);
+    frame8.append("text").attr('transform', 'translate(' + (visWidth/2) + ',' + (visHeight + margin/2) + ')').style("text-anchor", "middle").text(x8);
+    frame8.append('g').call(yAxis8);
+    frame8.append("text").attr("transform", "rotate(-90)").attr('x', -visHeight/2).attr('y', -margin/2).style("text-anchor", "middle").text(y8);
 
+    // set up color scale for feeding groups
+    let feeding_colors = d3.scaleOrdinal()
+                            .domain(data.map(d => d['feedingGroup']))
+                            .range(['yellow','brown','blue','purple', 'orange','green']);
 
- brush = d3.brush()
-                .extent([ // define what can be brushed
-                    [d3.min(xScale1.range()), d3.min(yScale1.range())],
-                    [d3.max(xScale1.range()), d3.max(yScale1.range())]
-                ])
-                .on("brush end", (e) => { // event handler
-                    if (e.selection === null) {
-                        circles = d3.selectAll('circle');
-                        circles = circles["_groups"][0];
-                        circles.forEach(c => { c.classList.remove('highlight'); })
-                    } else {
-                        const [[xMin, yMin], [xMax, yMax]] = e.selection;
-                        data.map((d, i) => {
+    // frame9 (2023 Summer)
+    frame9.append('g').attr('transform', 'translate(0,' + visHeight + ')').call(xAxis9);
+    frame9.append("text").attr('transform', 'translate(' + (visWidth/2) + ',' + (visHeight + margin/2) + ')').style("text-anchor", "middle").text(x9);
+    frame9.append('g').call(yAxis9);
+    frame9.append("text").attr("transform", "rotate(-90)").attr('x', -visHeight/2).attr('y', -margin/2).style("text-anchor", "middle").text(y9);
+    frame9.append("text").attr("x", -30).attr("y", visHeight/2).attr("text-anchor", "middle").attr("transform", `rotate(-90, -30, ${visHeight/2})`).style("font-size", "18px").style("font-weight", "bold").text("2023");
+    // frame10 (2023 Fall)
+    frame10.append('g').attr('transform', 'translate(0,' + visHeight + ')').call(xAxis10);
+    frame10.append("text").attr('transform', 'translate(' + (visWidth/2) + ',' + (visHeight + margin/2) + ')').style("text-anchor", "middle").text(x10);
+    frame10.append('g').call(yAxis10);
+    frame10.append("text").attr("transform", "rotate(-90)").attr('x', -visHeight/2).attr('y', -margin/2).style("text-anchor", "middle").text(y10);
 
-                            selector = "._" + i;
-                            sel =  d3.selectAll(selector);
-                            circles = sel["_groups"][0] //finds it
+    // brush
+    brush = d3.brush()
+                .extent([
+                    [d3.min(xScale1.range()), d3.min(yScale1.range())],
+                    [d3.max(xScale1.range()), d3.max(yScale1.range())]
+                ])
+                .on("brush end", (e) => {
+                    if (e.selection === null) {
+                        circles = d3.selectAll('circle');
+                        circles = circles["_groups"][0];
+                        circles.forEach(c => { c.classList.remove('highlight'); })
+                    } else {
+                        const [[xMin, yMin], [xMax, yMax]] = e.selection;
+                        data.map((d, i) => {
+                            selector = "._" + i;
+                            sel = d3.selectAll(selector);
+                            circles = sel["_groups"][0];
 
-                            if (xMin <= xScale1(d.waterTemp) && xMax >= xScale1(d.waterTemp) &&
-                                yMin <= yScale1(d.DO) && yMax >= yScale1(d.DO)) {
-                                circles.forEach(c => { c.classList.add('highlight'); })
-                            } else {
-                                circles.forEach(c => { c.classList.remove('highlight'); })
-                            }
-                        })
-                    }
-                });
+                            if (xMin <= xScale1(d.waterTemp) && xMax >= xScale1(d.waterTemp) &&
+                                yMin <= yScale1(d.density) && yMax >= yScale1(d.density)) {
+                                circles.forEach(c => { c.classList.add('highlight'); })
+                            } else if (xMin <= xScale3(d.waterTemp) && xMax >= xScale3(d.waterTemp) &&
+                                yMin <= yScale3(d.density) && yMax >= yScale3(d.density)) {
+                                circles.forEach(c => { c.classList.add('highlight'); })
+                            } else if (xMin <= xScale5(d.waterTemp) && xMax >= xScale5(d.waterTemp) &&
+                                yMin <= yScale5(d.density) && yMax >= yScale5(d.density)) {
+                                circles.forEach(c => { c.classList.add('highlight'); })
+                            } else if (xMin <= xScale7(d.waterTemp) && xMax >= xScale7(d.waterTemp) &&
+                                yMin <= yScale7(d.density) && yMax >= yScale7(d.density)) {
+                                circles.forEach(c => { c.classList.add('highlight'); })
+                            } else if (xMin <= xScale9(d.waterTemp) && xMax >= xScale9(d.waterTemp) &&
+                                yMin <= yScale9(d.density) && yMax >= yScale9(d.density)) {
+                                circles.forEach(c => { c.classList.add('highlight'); })
+                            } else {
+                                circles.forEach(c => { c.classList.remove('highlight'); })
+                            }
+                        })
+                    }
+                });
 
-  frame1.append("g")
-        .call(brush);
+    frame1.append("g").call(brush);
 
+    // dots
+    let dot1 = frame1.append('g').selectAll("dot")
+            .data(data.filter(d => d.year == "2019" && d.season == "Summer"))
+            .enter().append("circle")
+            .attr("cx", d => xScale1(d.waterTemp))
+            .attr("cy", d => yScale1(d.density))
+            .attr("r", 5).attr('stroke', 'black')
+            .style("fill", d => feeding_colors(d['feedingGroup']))
+            .attr("class", (d, i) => "_" + i);
 
+    let dot2 = frame2.append('g').selectAll("dot")
+            .data(data.filter(d => d.year == "2019" && d.season == "Fall"))
+            .enter().append("circle")
+            .attr("cx", d => xScale2(d.waterTemp))
+            .attr("cy", d => yScale2(d.density))
+            .attr("r", 5).attr('stroke', 'black')
+            .style("fill", d => feeding_colors(d['feedingGroup']))
+            .attr("class", (d, i) => "_" + i);
 
-//how to filter https://d3-graph-gallery.com/graph/basic_datamanipulation.html
- let dot1 = frame1.append('g')
-            .selectAll("dot")
-            .data(data.filter(function(d){ return d.year == "2019"}))
-            .enter()
-        .append("circle")
-               .attr("cx", function (d) {
-               // console.log(xScale1(d[x1]));
-               // console.log(xScale1);
-              //  console.log(xScale1(d.waterTemp));
+    let dot3 = frame3.append('g').selectAll("dot")
+            .data(data.filter(d => d.year == "2020" && d.season == "Summer"))
+            .enter().append("circle")
+            .attr("cx", d => xScale3(d.waterTemp))
+            .attr("cy", d => yScale3(d.density))
+            .attr("r", 5).attr('stroke', 'black')
+            .style("fill", d => feeding_colors(d['feedingGroup']))
+            .attr("class", (d, i) => "_" + i);
 
-                return xScale1(d.waterTemp); })
-            .attr("cy", function (d) {
-                return yScale1(d.DO); })
-            .attr("r", 5)
-            .attr('stroke', 'black')
-            .style("fill", function (d) {
-                return feeding_colors(d['feedingGroup'])
-            })
-            .attr("class", (d, i) => {return "_" + i});
+    let dot4 = frame4.append('g').selectAll("dot")
+            .data(data.filter(d => d.year == "2020" && d.season == "Fall"))
+            .enter().append("circle")
+            .attr("cx", d => xScale4(d.waterTemp))
+            .attr("cy", d => yScale4(d.density))
+            .attr("r", 5).attr('stroke', 'black')
+            .style("fill", d => feeding_colors(d['feedingGroup']))
+            .attr("class", (d, i) => "_" + i);
 
-  let dot2 = frame2.append('g')
+    let dot5 = frame5.append('g').selectAll("dot")
+            .data(data.filter(d => d.year == "2021" && d.season == "Summer"))
+            .enter().append("circle")
+            .attr("cx", d => xScale5(d.waterTemp))
+            .attr("cy", d => yScale5(d.density))
+            .attr("r", 5).attr('stroke', 'black')
+            .style("fill", d => feeding_colors(d['feedingGroup']))
+            .attr("class", (d, i) => "_" + i);
 
-            .selectAll("dot")
-            .data(data.filter(function(d){ return d.year == "2024"}))
-            .enter()
-        .append("circle")
-            .attr("cx", function (d) {
-                return xScale2(d.waterTemp); })
-            .attr("cy", function (d) {
-                return yScale2(d.DO); })
-            .attr("r", 5)
-            .attr('stroke', 'black')
-            .style("fill", function (d) {
-                return feeding_colors(d['feedingGroup'])
-            })
-            .attr("class", (d, i) => {return "_" + i});
+    let dot6 = frame6.append('g').selectAll("dot")
+            .data(data.filter(d => d.year == "2021" && d.season == "Fall"))
+            .enter().append("circle")
+            .attr("cx", d => xScale6(d.waterTemp))
+            .attr("cy", d => yScale6(d.density))
+            .attr("r", 5).attr('stroke', 'black')
+            .style("fill", d => feeding_colors(d['feedingGroup']))
+            .attr("class", (d, i) => "_" + i);
 
-   //console.log(data.filter(function(d){ return  (d.year == "2019" || d.year == "2024") }))
+    let dot7 = frame7.append('g').selectAll("dot")
+            .data(data.filter(d => d.year == "2022" && d.season == "Summer"))
+            .enter().append("circle")
+            .attr("cx", d => xScale7(d.waterTemp))
+            .attr("cy", d => yScale7(d.density))
+            .attr("r", 5).attr('stroke', 'black')
+            .style("fill", d => feeding_colors(d['feedingGroup']))
+            .attr("class", (d, i) => "_" + i);
 
-  });
+    let dot8 = frame8.append('g').selectAll("dot")
+            .data(data.filter(d => d.year == "2022" && d.season == "Fall"))
+            .enter().append("circle")
+            .attr("cx", d => xScale8(d.waterTemp))
+            .attr("cy", d => yScale8(d.density))
+            .attr("r", 5).attr('stroke', 'black')
+            .style("fill", d => feeding_colors(d['feedingGroup']))
+            .attr("class", (d, i) => "_" + i);
 
+    let dot9 = frame9.append('g').selectAll("dot")
+            .data(data.filter(d => d.year == "2023" && d.season == "Summer"))
+            .enter().append("circle")
+            .attr("cx", d => xScale9(d.waterTemp))
+            .attr("cy", d => yScale9(d.density))
+            .attr("r", 5).attr('stroke', 'black')
+            .style("fill", d => feeding_colors(d['feedingGroup']))
+            .attr("class", (d, i) => "_" + i);
 
+    let dot10 = frame10.append('g').selectAll("dot")
+            .data(data.filter(d => d.year == "2023" && d.season == "Fall"))
+            .enter().append("circle")
+            .attr("cx", d => xScale10(d.waterTemp))
+            .attr("cy", d => yScale10(d.density))
+            .attr("r", 5).attr('stroke', 'black')
+            .style("fill", d => feeding_colors(d['feedingGroup']))
+            .attr("class", (d, i) => "_" + i);
+
+    const legend = d3.select("#legend");
+    legend.selectAll("div")
+      .data(feeding_colors.domain())
+      .enter()
+      .append("div")
+      .style("display", "flex")
+      .style("align-items", "center")
+      .html(d => `<div style="width:12px;height:12px;background:${feeding_colors(d)};margin-right:6px;"></div> ${d}`);
+
+  });
 
 //coloring by upstream downstream
 
