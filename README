@@ -1,0 +1,99 @@
+Here's the updated README based on everything I now know about your final system:
+
+Mill River Visual Analytics
+Paradise Pond · Smith College · Northampton, MA
+2019 – 2024
+
+Purpose
+This visual analytics system supports long-term biological monitoring of the Mill River upstream and downstream of Paradise Pond at Smith College. The data tracks macroinvertebrate communities — small aquatic organisms that serve as biological indicators of river health — collected each summer and fall from 2019 to 2024.
+The system is designed to help researchers understand:
+
+How macroinvertebrate communities and functional feeding groups change across seasons and years
+How environmental variables (conductivity, water temperature, stream discharge, etc.) relate to organism density
+Which organisms show unusual or anomalous responses to environmental conditions
+
+Researcher: Marney Pratt, Biology Department, Smith College
+Dataset: 238 species · 84 families · Upstream & Downstream locations · Summer & Fall seasons · 2019–2023
+
+How to Use
+Running the System
+Because the system loads local JSON data files, it must be served over a local HTTP server — opening the HTML file directly in a browser will not work.
+
+Make sure Python is installed
+Open a terminal and navigate to the project folder:
+
+bashcd /path/to/project
+
+Start a local server:
+
+bashpython3 -m http.server 8000
+
+Open your browser and go to http://localhost:8000
+
+Navigating the System
+Use the three buttons at the top to switch between views.
+
+1. Communities Across Seasons
+Shows 10 side-by-side scatterplots organized by year (2019–2023) and season (Summer left, Fall right). Each plot shows Water Temperature (x-axis) vs Log scale of Density of macroinvertebrates (y-axis). Points are colored by functional feeding group.
+
+Use the brush tool on the Summer 2019 plot — click and drag to draw a rectangle around dots
+Matching dots will highlight with a red outline across all other plots
+This lets you track whether the same organisms appear at similar densities and temperatures across different seasons and years
+Each row is labeled with the year on the left side
+A legend at the top shows the feeding group color mapping
+
+
+2. Environmental Effects
+
+Use the dropdowns on the left to select an environmental variable and a functional feeding group
+Two scatterplots appear side by side — Upstream (left) and Downstream (right)
+Each point represents an organism observation; density is shown on a log scale
+Points are colored by functional feeding group
+The shared axis scale between the two plots allows direct comparison of upstream vs downstream patterns
+
+
+3. Anomalous Organisms
+
+Shows a correlation matrix of organism families vs. environmental variables
+Colored cells indicate a notable correlation (blue = positive, red = negative)
+Check "Show anomalies only" to filter to rows with |r| > 0.3
+Click any colored cell to see a detailed scatter plot on the right showing that organism's density vs the selected environmental variable
+
+
+Known Bugs
+
+The brush interaction in Communities Across Seasons only listens for selections made on the Summer 2019 (top left) plot — brushing on other plots will not trigger highlights
+On first load, the Environmental Effects view shows blank plots until both dropdowns are selected
+The detail scatter plot in Anomalous Organisms uses a linear scale; extreme density outliers can compress most points toward the bottom
+
+
+Data Cleaning & Analysis
+Source Data
+Raw data was collected by Marney Pratt's lab from field samples taken upstream and downstream of Paradise Pond each summer and fall, 2019–2023.
+Cleaning Steps
+
+Records with missing or non-finite values for environmental variables or density were excluded from visualizations
+Only observations with density > 0 were included in the scatterplots
+Family and feeding group labels were standardized to consistent casing for matching across files
+
+Derived Data
+
+merged_data.json — cleaned and merged observation records including organism, family, feeding group, location, season, year, density, and environmental measurements
+correlations.json — Pearson correlation coefficients computed between each organism family's density and each environmental variable, calculated across all available observations
+
+
+Dependencies
+
+D3.js v7 (included locally as d3.v7.min.js)
+No other external libraries required
+
+
+File Structure
+project/
+├── index.html            # Main HTML structure
+├── styles.css            # All styling
+├── script.js             # All visualization and interaction logic
+├── d3.v7.min.js          # D3.js library (local copy)
+├── merged_data.json      # Cleaned observation data
+├── correlations.json     # Precomputed correlation coefficients
+└── README.md             # This fileSonnet 4.6
