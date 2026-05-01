@@ -267,22 +267,22 @@ body {
 
 /* still have to see what each color mean */
 .legend-dot.Type1 {
-  background: #b10026;
+  background: #f9e4a0;
 }
 
 .legend-dot.Type2 {
-  background: #f46d43;
+  background: #f4a7a7;
 }
 
 .legend-dot.Type3 {
-  background: #fee08b;
+  background:#a8c8f0;
 }
 .legend-dot.Type4 {
-  background: #74ADD1;
+  background: #d4b0e8;
 }
 
 .legend-dot.Type5 {
-  background: #4575B4;
+  background: #a8d5b5;
 }
 
 
@@ -448,9 +448,4 @@ body {
   .project-header, .project-description { padding: 20px; }
 }
 
-
-.highlight {
-   stroke: #ff0000; 
-     stroke-width: 2px;
-}
 

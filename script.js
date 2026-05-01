@@ -108,25 +108,25 @@ let frame10 = frame.append('g')
 
 // to plot
 let x1 = 'Water Temperature'
-let y1 = 'Log scale of Density of macroinvertebrates'
+let y1 = 'Density (ind./m², log)'
 let x2 = 'Water Temperature'
-let y2 = 'Log scale of Density of macroinvertebrates'
+let y2 = 'Density (ind./m², log)'
 let x3 = 'Water Temperature'
-let y3 = 'Log scale of Density of macroinvertebrates'
+let y3 = 'Density (ind./m², log)'
 let x4 = 'Water Temperature'
-let y4 = 'Log scale of Density of macroinvertebrates'
+let y4 = 'Density (ind./m², log)'
 let x5 = 'Water Temperature'
-let y5 = 'Log scale of Density of macroinvertebrates'
+let y5 = 'Density (ind./m², log)'
 let x6 = 'Water Temperature'
-let y6 = 'Log scale of Density of macroinvertebrates'
+let y6 = 'Density (ind./m², log)'
 let x7 = 'Water Temperature'
-let y7 = 'Log scale of Density of macroinvertebrates'
+let y7 = 'Density (ind./m², log)'
 let x8 = 'Water Temperature'
-let y8 = 'Log scale of Density of macroinvertebrates'
+let y8 = 'Density (ind./m², log)'
 let x9 = 'Water Temperature'
-let y9 = 'Log scale of Density of macroinvertebrates'
+let y9 = 'Density (ind./m², log)'
 let x10 = 'Water Temperature'
-let y10 = 'Log scale of Density of macroinvertebrates'
+let y10 = 'Density (ind./m², log)'
 
 d3.json("merged_data.json")
   .then(function(data) {
@@ -190,7 +190,7 @@ d3.json("merged_data.json")
     frame1.append('g').call(yAxis1);
     frame1.append("text").attr("transform", "rotate(-90)").attr('x', -visHeight/2).attr('y', -margin/2).style("text-anchor", "middle").text(y1);
     frame1.append("text").attr("x", visWidth/2).attr("y", 15).attr("text-anchor", "middle").style("font-size", "16px").text("Summer");
-    frame1.append("text").attr("x", -30).attr("y", visHeight/2).attr("text-anchor", "middle").attr("transform", `rotate(-90, -30, ${visHeight/2})`).style("font-size", "18px").style("font-weight", "bold").text("2019");
+    frame1.append("text").attr("x", visWidth+ margin/2).attr("y", -22).attr("text-anchor", "middle").style("font-size", "18px").style("font-weight", "bold").text("2019");
 
     // frame2 (2019 Fall)
     frame2.append('g').attr('transform', 'translate(0,' + visHeight + ')').call(xAxis2);
@@ -205,7 +205,7 @@ d3.json("merged_data.json")
     frame3.append("text").attr('transform', 'translate(' + (visWidth/2) + ',' + (visHeight + margin/2) + ')').style("text-anchor", "middle").text(x3);
     frame3.append('g').call(yAxis3);
     frame3.append("text").attr("transform", "rotate(-90)").attr('x', -visHeight/2).attr('y', -margin/2).style("text-anchor", "middle").text(y3);
-    frame3.append("text").attr("x", -30).attr("y", visHeight/2).attr("text-anchor", "middle").attr("transform", `rotate(-90, -30, ${visHeight/2})`).style("font-size", "18px").style("font-weight", "bold").text("2020");
+    frame3.append("text").attr("x", visWidth+ margin/2).attr("y", -20).attr("text-anchor", "middle").style("font-size", "18px").style("font-weight", "bold").text("2020");
 
     // frame4 (2020 Fall)
     frame4.append('g').attr('transform', 'translate(0,' + visHeight + ')').call(xAxis4);
@@ -218,7 +218,7 @@ d3.json("merged_data.json")
     frame5.append("text").attr('transform', 'translate(' + (visWidth/2) + ',' + (visHeight + margin/2) + ')').style("text-anchor", "middle").text(x5);
     frame5.append('g').call(yAxis5);
     frame5.append("text").attr("transform", "rotate(-90)").attr('x', -visHeight/2).attr('y', -margin/2).style("text-anchor", "middle").text(y5);
-    frame5.append("text").attr("x", -30).attr("y", visHeight/2).attr("text-anchor", "middle").attr("transform", `rotate(-90, -30, ${visHeight/2})`).style("font-size", "18px").style("font-weight", "bold").text("2021");
+    frame5.append("text").attr("x",  visWidth+ margin/2).attr("y", -20).attr("text-anchor", "middle").style("font-size", "18px").style("font-weight", "bold").text("2021");
 
     // frame6 (2021 Fall)
     frame6.append('g').attr('transform', 'translate(0,' + visHeight + ')').call(xAxis6);
@@ -231,7 +231,7 @@ d3.json("merged_data.json")
     frame7.append("text").attr('transform', 'translate(' + (visWidth/2) + ',' + (visHeight + margin/2) + ')').style("text-anchor", "middle").text(x7);
     frame7.append('g').call(yAxis7);
     frame7.append("text").attr("transform", "rotate(-90)").attr('x', -visHeight/2).attr('y', -margin/2).style("text-anchor", "middle").text(y7);
-    frame7.append("text").attr("x", -30).attr("y", visHeight/2).attr("text-anchor", "middle").attr("transform", `rotate(-90, -30, ${visHeight/2})`).style("font-size", "18px").style("font-weight", "bold").text("2022");
+    frame7.append("text").attr("x", visWidth+ margin/2).attr("y", -20).attr("text-anchor", "middle").style("font-size", "18px").style("font-weight", "bold").text("2022");
 
     // frame8 (2022 Fall)
     frame8.append('g').attr('transform', 'translate(0,' + visHeight + ')').call(xAxis8);
@@ -242,14 +242,14 @@ d3.json("merged_data.json")
     // set up color scale for feeding groups
     let feeding_colors = d3.scaleOrdinal()
                             .domain(data.map(d => d['feedingGroup']))
-                            .range(['yellow','brown','blue','purple', 'orange','green']);
+                            .range(["#f9e4a0","#f4a7a7","#a8c8f0","#d4b0e8","#f9c99a","#a8d5b5"]);
 
     // frame9 (2023 Summer)
     frame9.append('g').attr('transform', 'translate(0,' + visHeight + ')').call(xAxis9);
     frame9.append("text").attr('transform', 'translate(' + (visWidth/2) + ',' + (visHeight + margin/2) + ')').style("text-anchor", "middle").text(x9);
     frame9.append('g').call(yAxis9);
     frame9.append("text").attr("transform", "rotate(-90)").attr('x', -visHeight/2).attr('y', -margin/2).style("text-anchor", "middle").text(y9);
-    frame9.append("text").attr("x", -30).attr("y", visHeight/2).attr("text-anchor", "middle").attr("transform", `rotate(-90, -30, ${visHeight/2})`).style("font-size", "18px").style("font-weight", "bold").text("2023");
+    frame9.append("text").attr("x", visWidth+ margin/2).attr("y", -20).attr("text-anchor", "middle").style("font-size", "18px").style("font-weight", "bold").text("2023");
     // frame10 (2023 Fall)
     frame10.append('g').attr('transform', 'translate(0,' + visHeight + ')').call(xAxis10);
     frame10.append("text").attr('transform', 'translate(' + (visWidth/2) + ',' + (visHeight + margin/2) + ')').style("text-anchor", "middle").text(x10);
@@ -263,38 +263,19 @@ d3.json("merged_data.json")
                     [d3.max(xScale1.range()), d3.max(yScale1.range())]
                 ])
                 .on("brush end", (e) => {
-                    if (e.selection === null) {
-                        circles = d3.selectAll('circle');
-                        circles = circles["_groups"][0];
-                        circles.forEach(c => { c.classList.remove('highlight'); })
-                    } else {
-                        const [[xMin, yMin], [xMax, yMax]] = e.selection;
-                        data.map((d, i) => {
-                            selector = "._" + i;
-                            sel = d3.selectAll(selector);
-                            circles = sel["_groups"][0];
-
-                            if (xMin <= xScale1(d.waterTemp) && xMax >= xScale1(d.waterTemp) &&
-                                yMin <= yScale1(d.density) && yMax >= yScale1(d.density)) {
-                                circles.forEach(c => { c.classList.add('highlight'); })
-                            } else if (xMin <= xScale3(d.waterTemp) && xMax >= xScale3(d.waterTemp) &&
-                                yMin <= yScale3(d.density) && yMax >= yScale3(d.density)) {
-                                circles.forEach(c => { c.classList.add('highlight'); })
-                            } else if (xMin <= xScale5(d.waterTemp) && xMax >= xScale5(d.waterTemp) &&
-                                yMin <= yScale5(d.density) && yMax >= yScale5(d.density)) {
-                                circles.forEach(c => { c.classList.add('highlight'); })
-                            } else if (xMin <= xScale7(d.waterTemp) && xMax >= xScale7(d.waterTemp) &&
-                                yMin <= yScale7(d.density) && yMax >= yScale7(d.density)) {
-                                circles.forEach(c => { c.classList.add('highlight'); })
-                            } else if (xMin <= xScale9(d.waterTemp) && xMax >= xScale9(d.waterTemp) &&
-                                yMin <= yScale9(d.density) && yMax >= yScale9(d.density)) {
-                                circles.forEach(c => { c.classList.add('highlight'); })
-                            } else {
-                                circles.forEach(c => { c.classList.remove('highlight'); })
-                            }
-                        })
-                    }
-                });
+                  d3.selectAll("circle").attr("fill-opacity", 0.45).attr("stroke", "#333").attr("stroke-width", 0.4).attr("r", 5);
+                    if (e.selection !== null) {
+                      const [[xMin, yMin], [xMax, yMax]] = e.selection;
+                      d3.selectAll("circle").each(function(d) {
+                        const inBrush = xMin <= xScale1(d.waterTemp) && xScale1(d.waterTemp) <= xMax && yMin <= yScale1(d.density)   && yScale1(d.density)   <= yMax;
+                        d3.select(this)
+                          .attr("fill-opacity", inBrush ? 1 : 0.05)
+                          .attr("stroke",       inBrush ? "white" : "#333")
+                          .attr("stroke-width", inBrush ? 1.5 : 0.4)
+                          .attr("r",            inBrush ? 7 : 5);
+              });
+          }
+  });
 
     frame1.append("g").call(brush);
 
@@ -304,7 +285,7 @@ d3.json("merged_data.json")
             .enter().append("circle")
             .attr("cx", d => xScale1(d.waterTemp))
             .attr("cy", d => yScale1(d.density))
-            .attr("r", 5).attr('stroke', 'black')
+            .attr("r", 5).attr('stroke', 'black').attr("stroke-width", 0.4).attr("fill-opacity", 0.45)
             .style("fill", d => feeding_colors(d['feedingGroup']))
             .attr("class", (d, i) => "_" + i);
 
@@ -313,7 +294,7 @@ d3.json("merged_data.json")
             .enter().append("circle")
             .attr("cx", d => xScale2(d.waterTemp))
             .attr("cy", d => yScale2(d.density))
-            .attr("r", 5).attr('stroke', 'black')
+            .attr("r", 5).attr('stroke', 'black').attr("stroke-width", 0.4).attr("fill-opacity", 0.45)
             .style("fill", d => feeding_colors(d['feedingGroup']))
             .attr("class", (d, i) => "_" + i);
 
@@ -322,7 +303,7 @@ d3.json("merged_data.json")
             .enter().append("circle")
             .attr("cx", d => xScale3(d.waterTemp))
             .attr("cy", d => yScale3(d.density))
-            .attr("r", 5).attr('stroke', 'black')
+            .attr("r", 5).attr('stroke', 'black').attr("stroke-width", 0.4).attr("fill-opacity", 0.45)
             .style("fill", d => feeding_colors(d['feedingGroup']))
             .attr("class", (d, i) => "_" + i);
 
@@ -331,7 +312,7 @@ d3.json("merged_data.json")
             .enter().append("circle")
             .attr("cx", d => xScale4(d.waterTemp))
             .attr("cy", d => yScale4(d.density))
-            .attr("r", 5).attr('stroke', 'black')
+            .attr("r", 5).attr('stroke', 'black').attr("stroke-width", 0.4).attr("fill-opacity", 0.45)
             .style("fill", d => feeding_colors(d['feedingGroup']))
             .attr("class", (d, i) => "_" + i);
 
@@ -340,7 +321,7 @@ d3.json("merged_data.json")
             .enter().append("circle")
             .attr("cx", d => xScale5(d.waterTemp))
             .attr("cy", d => yScale5(d.density))
-            .attr("r", 5).attr('stroke', 'black')
+            .attr("r", 5).attr('stroke', 'black').attr("stroke-width", 0.4).attr("fill-opacity", 0.45)
             .style("fill", d => feeding_colors(d['feedingGroup']))
             .attr("class", (d, i) => "_" + i);
 
@@ -349,7 +330,7 @@ d3.json("merged_data.json")
             .enter().append("circle")
             .attr("cx", d => xScale6(d.waterTemp))
             .attr("cy", d => yScale6(d.density))
-            .attr("r", 5).attr('stroke', 'black')
+            .attr("r", 5).attr('stroke', 'black').attr("stroke-width", 0.4).attr("fill-opacity", 0.45)
             .style("fill", d => feeding_colors(d['feedingGroup']))
             .attr("class", (d, i) => "_" + i);
 
@@ -358,7 +339,7 @@ d3.json("merged_data.json")
             .enter().append("circle")
             .attr("cx", d => xScale7(d.waterTemp))
             .attr("cy", d => yScale7(d.density))
-            .attr("r", 5).attr('stroke', 'black')
+            .attr("r", 5).attr('stroke', 'black').attr("stroke-width", 0.4).attr("fill-opacity", 0.45)
             .style("fill", d => feeding_colors(d['feedingGroup']))
             .attr("class", (d, i) => "_" + i);
 
@@ -367,7 +348,7 @@ d3.json("merged_data.json")
             .enter().append("circle")
             .attr("cx", d => xScale8(d.waterTemp))
             .attr("cy", d => yScale8(d.density))
-            .attr("r", 5).attr('stroke', 'black')
+            .attr("r", 5).attr('stroke', 'black').attr("stroke-width", 0.4).attr("fill-opacity", 0.45)
             .style("fill", d => feeding_colors(d['feedingGroup']))
             .attr("class", (d, i) => "_" + i);
 
@@ -376,7 +357,7 @@ d3.json("merged_data.json")
             .enter().append("circle")
             .attr("cx", d => xScale9(d.waterTemp))
             .attr("cy", d => yScale9(d.density))
-            .attr("r", 5).attr('stroke', 'black')
+            .attr("r", 5).attr('stroke', 'black').attr("stroke-width", 0.4).attr("fill-opacity", 0.45)
             .style("fill", d => feeding_colors(d['feedingGroup']))
             .attr("class", (d, i) => "_" + i);
 
@@ -385,7 +366,7 @@ d3.json("merged_data.json")
             .enter().append("circle")
             .attr("cx", d => xScale10(d.waterTemp))
             .attr("cy", d => yScale10(d.density))
-            .attr("r", 5).attr('stroke', 'black')
+            .attr("r", 5).attr('stroke', 'black').attr("stroke-width", 0.4).attr("fill-opacity", 0.45)
             .style("fill", d => feeding_colors(d['feedingGroup']))
             .attr("class", (d, i) => "_" + i);
 
@@ -493,11 +474,7 @@ function drawHLI2Scatter(svg, data, allData, envKey, envLabel) {
       "Shredder"
     ])
     .range([
-      "#b10026",
-      "#f46d43",
-      "#fee08b",
-      "#74add1",
-      "#4575b4"
+      "#f9e4a0","#f4a7a7","#a8c8f0","#d4b0e8","#a8d5b5"
     ]);
 
   svg.append("g")
