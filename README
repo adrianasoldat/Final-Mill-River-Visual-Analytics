@@ -94,4 +94,4 @@ project/
 ├── d3.v7.min.js          # D3.js library (local copy)
 ├── merged_data.json      # Cleaned observation data
 ├── correlations.json     # Precomputed correlation coefficients
-└── README.md             # This fileSonnet 4.6
+└── README.md             # This file
